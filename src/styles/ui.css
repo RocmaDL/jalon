@@ -1,0 +1,23 @@
+/* ---------- Boutons 3D ---------- */
+.b3{--c:var(--pri);--d:var(--pri-deep);--t:var(--pri-ink);background:var(--c);color:var(--t);border:0;border-radius:14px;box-shadow:0 4px 0 var(--d);padding:13px 22px;
+  font:600 16px var(--f-d);text-transform:uppercase;letter-spacing:.06em;transition:transform .1s,box-shadow .1s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.b3:active:not(:disabled){transform:translateY(4px);box-shadow:0 0 0 var(--d)}
+.b3:disabled{--c:var(--sunk);--d:var(--line);--t:var(--muted)}
+.b3.ghost{--c:var(--surface);--d:var(--line);--t:var(--pri);border:2px solid var(--line)}
+.b3.good{--c:var(--good);--d:var(--good-deep);--t:var(--good-ink)}
+.b3.bad{--c:var(--bad);--d:var(--bad-deep);--t:var(--bad-ink)}
+.b3.gold{--c:var(--gold);--d:var(--gold-deep);--t:var(--gold-ink)}
+.b3.legend{--c:var(--legend);--d:var(--legend-deep);--t:var(--legend-ink)}
+.b3.wide{width:100%}
+.b3.sm{padding:9px 14px;font-size:14px;border-radius:12px}
+.link{background:none;border:0;color:var(--pri);font:600 15px var(--f-d);text-transform:uppercase;letter-spacing:.05em;padding:8px}
+
+/* ---------- Cartes ---------- */
+.card{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card h3{font-size:19px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.between{justify-content:space-between}
+.bar{height:14px;background:var(--sunk);border-radius:7px;overflow:hidden}
+.bar>i{display:block;height:100%;border-radius:7px;background:var(--xp);transition:width .4s ease-out}
+.page{display:flex;flex-direction:column;gap:20px}
+.page>h1{font-size:28px}

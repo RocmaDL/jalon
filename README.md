@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jalon
 
-## Getting Started
+Appli de révision du module « Management de projets » (M1) : trois journées de cours, onze notions, soixante termes. Un parcours par journée, des exercices variés (QCM, vrai/faux, phrases à trous, remise en ordre, saisie libre, paires), une mémoire espacée qui fait revenir ce qu'on oublie, et une couche de jeu (série, cœurs, quêtes, ligue simulée, succès).
 
-First, run the development server:
+À l'origine, tout tenait dans un seul fichier `Jalon.html`. Ce dépôt en est la conversion en Next.js + TypeScript, découpée par responsabilité. Le comportement et le rendu sont les mêmes ; la sauvegarde utilise la même clé `localStorage` (`jalon-v1`).
+
+## Lancer
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # build de production
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Organisation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/          layout (polices, CSS), page, icône
+  data/         contenu pédagogique : journées, lexique, QCM, vrai/faux, phrases à trous, ordres
+  lib/          outils sans état de jeu : dates, texte, hasard, index du contenu,
+                génération et correction des exercices, sons et confettis
+  game/         état de jeu et règles
+    state.ts      sauvegarde localStorage
+    store.ts      état d'interface, séance en cours, abonnement React (useSyncExternalStore)
+    actions.ts    tout ce que déclenche l'utilisateur
+    keyboard.ts   raccourcis clavier
+    memory.ts     mémoire espacée (demi-vie)
+    progress.ts   série, cœurs, XP
+    quests.ts · league.ts · achievements.ts · path.ts
+  components/
+    shell/      navigation, compteurs, colonne de résumé
+    pages/      Apprendre, S'entraîner, Flashcards, Lexique, Ligue, Quêtes, Profil, Boutique, accueil
+    lesson/     séance : en-tête, un composant par type d'exercice, correction, écrans de fin
+    overlays/   modales, toasts, canvas des confettis
+    ui/         icônes, mascotte, écusson, compteur animé
+  styles/       CSS d'origine, découpé par zone (tokens, coque, parcours, leçon…)
+```
 
-## Learn More
+L'état reste un objet mutable, comme dans la version d'origine : les actions le modifient puis appellent `commit()`, qui sauvegarde et redessine. L'appli est rendue côté navigateur uniquement (`ClientApp`), puisqu'elle dépend de `localStorage` et de l'heure locale.
 
-To learn more about Next.js, take a look at the following resources:
+## Contenu
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Les questions et définitions sont tirées des supports du cours. Pour en ajouter, il suffit d'éditer les fichiers de `src/data/` : les index, leçons et révisions se recalculent seuls.

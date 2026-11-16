@@ -5,6 +5,7 @@
 import { useEffect } from "react";
 import { refreshTimers } from "@/game/actions";
 import { handleKey } from "@/game/keyboard";
+import { syncScore } from "@/game/leaderboard";
 import { D } from "@/game/state";
 import { LS, boot, useStore } from "@/game/store";
 import { Lesson } from "./lesson/Lesson";
@@ -21,6 +22,9 @@ export default function App() {
   useStore();
 
   useEffect(() => {
+    void syncScore().catch((error: unknown) => {
+      console.warn("Synchronisation du classement impossible.", error);
+    });
     document.addEventListener("keydown", handleKey);
     const iv = setInterval(refreshTimers, 15000);
     return () => {

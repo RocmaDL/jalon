@@ -34,6 +34,7 @@ export interface LeagueResult {
 /** Données sauvegardées dans localStorage (même schéma que la version mono-fichier). */
 export interface GameData {
   onboard: boolean;
+  playerId: string;
   name: string;
   goal: number;
   xp: number;

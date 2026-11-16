@@ -41,6 +41,10 @@ src/
 
 L'état reste un objet mutable, comme dans la version d'origine : les actions le modifient puis appellent `commit()`, qui sauvegarde et redessine. L'appli est rendue côté navigateur uniquement (`ClientApp`), puisqu'elle dépend de `localStorage` et de l'heure locale.
 
+## Classement partagé
+
+La page « Ligue » synchronise les scores dans `src/data/leaderboard.json`, y compris automatiquement au rafraîchissement pour les utilisateurs existants. Leur progression `localStorage` est conservée ; un identifiant joueur est ajouté uniquement s'il manque. En développement, le fichier est écrit directement par la route `POST /api/leaderboard`. Sur Vercel, configurez les variables `GITHUB_TOKEN`, `GITHUB_REPOSITORY` (par exemple `RocmaDL/jalon`), `GITHUB_BRANCH` (par défaut `main`) et éventuellement `LEADERBOARD_PATH`. La route utilisera alors l'API GitHub pour lire et mettre à jour ce fichier sans exposer le jeton au navigateur. Le jeton doit avoir uniquement l'accès Contents en lecture/écriture sur le dépôt.
+
 ## Contenu
 
 Les questions et définitions sont tirées des supports JavaScript et React du dossier de formation. Le texte complet des 23 PDF est disponible dans « Lexique » > « Cours complets » et dans `src/data/course-content.ts`. La banque contient aussi des questions contextualisées générées à partir des notions repérées dans ces supports, dans `src/data/course-qcm.ts`. Pour ajouter un support, il suffit d'ajouter son texte et ses questions à `src/data/` : les index, leçons et révisions se recalculent seuls.

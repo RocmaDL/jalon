@@ -1,14 +1,54 @@
+"use client";
+
 // Ligue hebdomadaire : niveaux, classement, zones de promotion et de relégation.
 
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { TIERS } from "@/game/constants";
 import { table, weekTimeLeft } from "@/game/league";
+import { fetchScores, syncScore } from "@/game/leaderboard";
 import { D } from "@/game/state";
+import { weekId } from "@/lib/dates";
 import { Shield } from "../ui/Shield";
 
 export function LeaguePage() {
-  const tb = table();
   const t = D.league.tier;
+  const playerId = D.playerId;
+  const playerName = D.name;
+  const [sharedTable, setSharedTable] = useState<ReturnType<typeof table> | null>(null);
+  const [sharedAvailable, setSharedAvailable] = useState(true);
+  const refreshKey = `${weekId()}|${t}|${D.league.weekXp}|${playerName}|${playerId}`;
+
+  useEffect(() => {
+    let active = true;
+    const sync = async () => {
+      try {
+        const players = playerId && playerName ? await syncScore() : await fetchScores();
+        if (!active) return;
+        setSharedTable(
+          players.map((player, index) => ({
+            name: player.name,
+            xp: player.xp,
+            me: player.id === playerId,
+            c: player.id === playerId ? "var(--pri)" : `hsl(${(index * 47) % 360} 70% 55%)`,
+          })),
+        );
+        setSharedAvailable(true);
+      } catch {
+        if (active) {
+          setSharedAvailable(false);
+          setSharedTable(null);
+        }
+      }
+    };
+    void sync();
+    const timer = window.setInterval(sync, 30_000);
+    return () => {
+      active = false;
+      window.clearInterval(timer);
+    };
+  }, [refreshKey, playerId, playerName]);
+
+  const tb = sharedTable || table();
   const left = weekTimeLeft();
   const dd = Math.floor(left / 864e5);
   const hh = Math.floor((left % 864e5) / 36e5);
@@ -52,7 +92,9 @@ export function LeaguePage() {
         })}
       </div>
       <p className="muted" style={{ fontSize: 13, margin: 0, textAlign: "center" }}>
-        Tes adversaires sont simulés : leur XP progresse au fil de la semaine.
+        {sharedAvailable
+          ? "Classement partagé entre les utilisateurs de l'application."
+          : "Classement partagé indisponible : affichage de secours local."}
       </p>
     </div>
   );

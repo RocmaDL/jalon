@@ -169,6 +169,11 @@ export function UnitPath({ unit, current }: { unit: Unit; current: string | null
           <span>Guide</span>
         </button>
       </div>
+      {unlocked && !legend && (
+        <p className="muted" style={{ margin: "8px 0 0", textAlign: "center" }}>
+          Tu peux faire les étapes dans l&apos;ordre ou passer cette journée en réussissant directement son épreuve finale.
+        </p>
+      )}
       <div className="path">
         {N.map((n, i) => {
           const st = nodeState(N, i);

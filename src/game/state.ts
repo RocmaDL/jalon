@@ -7,6 +7,7 @@ const STORE = "jalon-v1";
 
 export const fresh = (): GameData => ({
   onboard: false,
+  playerId: "",
   name: "",
   goal: 20,
   xp: 0,
@@ -52,7 +53,15 @@ export function loadD(): void {
       merged.league = Object.assign(fresh().league, s.league || {});
       merged.stats = Object.assign(fresh().stats, s.stats || {});
       merged.month = Object.assign(fresh().month, s.month || {});
+      if (!merged.playerId) {
+        merged.playerId = globalThis.crypto?.randomUUID?.() || `player-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      }
       D = merged;
+      saveD();
+    }
+    if (!D.playerId) {
+      D.playerId = globalThis.crypto?.randomUUID?.() || `player-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      saveD();
     }
   } catch {
     /* sauvegarde illisible : on garde l’état neuf */

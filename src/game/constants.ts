@@ -1,6 +1,7 @@
 // Constantes de jeu : cœurs, objectifs, ligues, boutique, quêtes.
 
 import type { IconName, QuestKey, Tab } from "./types";
+import { UNITS } from "@/data/units";
 
 /** Un cœur revient toutes les 30 minutes. */
 export const HEART_MS = 30 * 60e3;
@@ -14,7 +15,7 @@ export const GOALS: [number, string][] = [
 
 export const MILESTONES = [3, 7, 14, 30, 50, 100];
 
-export const TIERS = ["Post-it", "Brief", "Cadrage", "Kanban", "Gantt", "Sprint", "Jalon", "COPIL", "PMO", "CODIR"];
+export const TIERS = ["Console", "Variable", "Callback", "Promise", "Composant", "Props", "State", "Hook", "TypeScript", "Full Stack"];
 export const TIERC = [
   "#c9a227",
   "#8a94a6",
@@ -84,7 +85,5 @@ export const NAVS: [Tab, string, IconName][] = [
 
 export const DAY_FILTERS: [string, string][] = [
   ["all", "Tout"],
-  ["1", "J1"],
-  ["2", "J2"],
-  ["3", "J3"],
+  ...UNITS.map((unit) => [String(unit.d), `J${unit.d}`] as [string, string]),
 ];

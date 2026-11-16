@@ -1,17 +1,16 @@
-// Contenu tiré des supports « Management de projets » (M1, O. Blumberg).
+// Exercices de remise en ordre tirés des supports JavaScript et React.
 import type { OrderItem } from "./types";
 
 /** Remise en ordre : p = consigne, items = ordre correct, e = explication. */
 export const OR: OrderItem[] = [
-  {"t":"projet","p":"Remets les phases du cycle de vie dans l'ordre.","items":["Avant-projet","Cadrage","Planification","Exécution et pilotage","Clôture"],"e":"L'ordre ne se négocie pas, même si les phases se recouvrent un peu."},
-  {"t":"demande","p":"De l'intention au comment : remets ces documents dans l'ordre.","items":["Brief","Note de cadrage","Cahier des charges fonctionnel","Cahier des charges technique"],"e":"On passe de l'intention au quoi, puis du quoi au comment."},
-  {"t":"demande","p":"Remets les critères SMART dans l'ordre.","items":["Spécifique","Mesurable","Atteignable","Réaliste / pertinent","Temporellement défini"],"e":"Test simple : peut-on dire le jour de la livraison si l'objectif est atteint ?"},
-  {"t":"cadrage","p":"Remets les huit rubriques de la note de cadrage dans l'ordre.","items":["Contexte et problématique","Objectifs","Périmètre","Livrables","Jalons et échéances","Parties prenantes et gouvernance","Contraintes et hypothèses","Critères d'acceptation"],"e":"Un plan qui marche pour un projet client, un mémoire ou un déménagement."},
-  {"t":"arbitrage","p":"Du moins cher au plus cher : quand le changement est-il décidé ?","items":["Cadrage","Conception","Réalisation","Recette","Après mise en production"],"e":"1×, 5×, 10×, 25×, 100× : un ordre de grandeur, la courbe ne varie jamais."},
-  {"t":"decouper","p":"Remets les étapes de la planification dans l'ordre.","items":["Découper","Ordonner","Estimer","Dater"],"e":"Le planning est une conséquence, pas une intention."},
-  {"t":"ressourcer","p":"Remets les questions d'affectation dans l'ordre.","items":["Qui sait faire ?","Qui est disponible ?","Qui est autorisé ?"],"e":"La compétence d'abord. L'autorisation est la question qu'on oublie."},
-  {"t":"piloter","p":"Remets le circuit d'une demande de changement dans l'ordre.","items":["L'enregistrer par écrit","Chiffrer son impact","La soumettre avec deux options","Tracer la décision et mettre à jour"],"e":"Une demande orale n'existe pas."},
-  {"t":"piloter","p":"Analyse d'un écart : remets les questions dans l'ordre.","items":["Quel est l'écart ?","D'où vient-il ?","Qu'est-ce qu'on fait ?"],"e":"Un écart qu'on ne chiffre pas ne se traite pas."},
-  {"t":"communiquer","p":"Remets l'ordre du jour d'une réunion de suivi dans l'ordre.","items":["Ce qui a été terminé","Les écarts et ce qu'on propose","Les décisions à prendre","Les prochaines échéances"],"e":"Envoyé la veille ; trente minutes en tout."},
-  {"t":"cloturer","p":"Remets les étapes de la clôture dans l'ordre.","items":["Recette","Validation","Transfert","Bilan et REX"],"e":"Bilan et REX sont les deux étapes qu'on saute toujours."},
+  {"t":"js-fondamentaux","p":"Remets les étapes d'une comparaison de valeur dans l'ordre.","items":["Lire les deux valeurs","Vérifier leurs types","Choisir une comparaison stricte","Interpréter le résultat"],"e":"Comprendre le type évite les conversions implicites surprises."},
+  {"t":"fonctions","p":"Remets les étapes d'un appel asynchrone dans l'ordre.","items":["Appeler la fonction async","Attendre la Promise","Lire la réponse","Gérer l'erreur"],"e":"Une opération réseau doit prévoir le succès comme l'échec."},
+  {"t":"tableaux-objets","p":"Remets ces transformations de tableau dans l'ordre.","items":["filter les éléments utiles","map leurs données","reduce si une valeur globale est nécessaire","Afficher le résultat"],"e":"Chaque méthode répond à une intention différente."},
+  {"t":"react-components","p":"Remets les étapes de création d'un composant React dans l'ordre.","items":["Définir les données nécessaires","Écrire le composant","Retourner le JSX","Rendre le composant dans l'arbre"],"e":"Un composant décrit son interface à partir de ses entrées."},
+  {"t":"props-state","p":"Remets le flux d'une mise à jour d'état dans l'ordre.","items":["L'utilisateur déclenche une action","Le handler calcule la nouvelle valeur","Le setter met à jour le state","React rend à nouveau le composant"],"e":"Le rendu est une conséquence de la mise à jour, pas une mutation directe."},
+  {"t":"events-hooks","p":"Remets le cycle d'un effet React dans l'ordre.","items":["Le composant est rendu","Les dépendances sont comparées","L'effet est exécuté","Le nettoyage intervient si nécessaire"],"e":"Le nettoyage évite les abonnements et timers qui fuient."},
+  {"t":"forms-api","p":"Remets l'envoi d'un formulaire contrôlé dans l'ordre.","items":["Saisir une valeur","Mettre à jour le state dans onChange","Empêcher le rechargement dans onSubmit","Valider puis envoyer les données"],"e":"Le composant garde la main sur la valeur et la validation."},
+  {"t":"router","p":"Remets une navigation côté client dans l'ordre.","items":["L'utilisateur choisit un lien","L'URL est mise à jour","La route correspondante est sélectionnée","L'écran est rendu"],"e":"Le routeur change de vue sans recharger toute la page."},
+  {"t":"quality","p":"Remets une démarche de qualité dans l'ordre.","items":["Définir le comportement attendu","Écrire un test ciblé","Implémenter ou corriger","Lancer les vérifications"],"e":"Un comportement explicite rend les régressions visibles."},
+  {"t":"performance","p":"Remets une démarche d'optimisation dans l'ordre.","items":["Mesurer le problème","Identifier la cause","Choisir une optimisation ciblée","Mesurer à nouveau"],"e":"Sans mesure avant et après, l'optimisation reste une hypothèse."}
 ];

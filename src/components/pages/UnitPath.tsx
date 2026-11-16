@@ -10,7 +10,7 @@ import {
   startTopic,
   startUnitReview,
 } from "@/game/actions";
-import { type NodeState, type PathNode, nodeLabel, nodeState, unitNodes } from "@/game/path";
+import { type NodeState, type PathNode, nodeLabel, nodeState, unitNodes, unitUnlocked } from "@/game/path";
 import { D } from "@/game/state";
 import { S } from "@/game/store";
 import type { IconName } from "@/game/types";
@@ -78,7 +78,7 @@ function NodePopover({ node: n, st }: { node: PathNode; st: NodeState }) {
     return (
       <div className="pop locked">
         <h3>{nodeLabel(n)}</h3>
-        <p>Termine les étapes précédentes de cette journée pour débloquer celle-ci.</p>
+        <p>Valide l&apos;épreuve de la journée précédente pour débloquer cette journée.</p>
         <button className="b3 wide" disabled>
           Verrouillé
         </button>
@@ -130,7 +130,7 @@ function NodePopover({ node: n, st }: { node: PathNode; st: NodeState }) {
         <h3>Épreuve de la journée {n.d}</h3>
         <p>
           15 exercices sur toute la journée, 3 vies, aucune deuxième chance. Réussis-la pour rendre l&apos;unité
-          légendaire.
+          légendaire ou passer directement à la journée suivante.
         </p>
         <button className="b3 wide" onClick={() => startCheckpoint(n.d)}>
           {st.done ? "Refaire" : "Tenter l'épreuve"} · +40 XP
@@ -143,6 +143,7 @@ function NodePopover({ node: n, st }: { node: PathNode; st: NodeState }) {
 export function UnitPath({ unit, current }: { unit: Unit; current: string | null }) {
   const N = unitNodes(unit.d);
   const legend = D.legend["e:" + unit.d];
+  const unlocked = unitUnlocked(unit.d);
   const style = {
     "--u": `var(--u${unit.d})`,
     "--u-deep": `var(--u${unit.d}d)`,
@@ -158,7 +159,12 @@ export function UnitPath({ unit, current }: { unit: Unit; current: string | null
           </small>
           <h2>{unit.n}</h2>
         </div>
-        <button className="guide" onClick={() => openModal({ kind: "guide", d: unit.d })} aria-label={`Guide de la journée ${unit.d}`}>
+        <button
+          className="guide"
+          onClick={() => openModal({ kind: "guide", d: unit.d })}
+          aria-label={`Guide de la journée ${unit.d}`}
+          disabled={!unlocked}
+        >
           <Icon name="book" />
           <span>Guide</span>
         </button>

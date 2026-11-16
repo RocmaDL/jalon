@@ -1,4 +1,4 @@
-// Page « Apprendre » : les trois journées sous forme de parcours.
+// Page « Apprendre » : les unités sous forme de parcours.
 
 import { UNITS } from "@/data/units";
 import { globalCurrent } from "@/game/path";
@@ -12,7 +12,7 @@ export function LearnPage() {
         <UnitPath key={u.d} unit={u} current={current} />
       ))}
       <p className="muted" style={{ textAlign: "center", fontSize: 14, margin: "0 0 20px" }}>
-        Les trois journées sont ouvertes : commence par celle que tu veux réviser.
+        Les {UNITS.length} unités sont ouvertes : avance à ton rythme, une notion dense à la fois.
       </p>
     </div>
   );

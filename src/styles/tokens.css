@@ -9,6 +9,14 @@
   --u1:#2f5bd3; --u1d:#1d3d99; --u1i:#ffffff;
   --u2:#0e8b7b; --u2d:#086356; --u2i:#ffffff;
   --u3:#c03f78; --u3d:#8b2754; --u3i:#ffffff;
+  --u4:#e08a2e; --u4d:#a85c12; --u4i:#ffffff;
+  --u5:#2e8f6a; --u5d:#1d6449; --u5i:#ffffff;
+  --u6:#d4508a; --u6d:#96325e; --u6i:#ffffff;
+  --u7:#5b6bd8; --u7d:#3d4ba3; --u7i:#ffffff;
+  --u8:#9152d6; --u8d:#66349b; --u8i:#ffffff;
+  --u9:#d23b3b; --u9d:#9e2626; --u9i:#ffffff;
+  --u10:#1d8a9b; --u10d:#12606c; --u10i:#ffffff;
+  --u11:#c08a00; --u11d:#876100; --u11i:#ffffff;
   --note:#ffd84a; --note-deep:#e3b51c;
   --shadow:rgba(20,30,60,.16);
   --f-d:var(--font-fredoka),'Fredoka','Trebuchet MS',system-ui,sans-serif;
@@ -25,6 +33,14 @@
   --u1:#7393ff; --u1d:#4363cc; --u1i:#0a1024;
   --u2:#3ccab3; --u2d:#22917f; --u2i:#03201b;
   --u3:#f07aaa; --u3d:#b84c7b; --u3i:#2a0716;
+  --u4:#f0aa52; --u4d:#c47820; --u4i:#241304;
+  --u5:#5dcc9e; --u5d:#32916d; --u5i:#061b12;
+  --u6:#ee83b0; --u6d:#ba4c7b; --u6i:#2c0718;
+  --u7:#8996ff; --u7d:#5b68c9; --u7i:#0c1028;
+  --u8:#b783f0; --u8d:#8656bb; --u8i:#1b0d2b;
+  --u9:#ff7777; --u9d:#c94c4c; --u9i:#2b0808;
+  --u10:#55c7d4; --u10d:#318f9b; --u10i:#061c20;
+  --u11:#e9bd4e; --u11d:#b38b27; --u11i:#241b04;
   --note:#f5cf48; --note-deep:#cfa521; --shadow:rgba(0,0,0,.45); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0e1322; --surface:#161d31; --sunk:#1f2740; --ink:#e8ecf7; --muted:#9aa4c1; --line:#2b3553;
@@ -37,4 +53,12 @@
   --u1:#7393ff; --u1d:#4363cc; --u1i:#0a1024;
   --u2:#3ccab3; --u2d:#22917f; --u2i:#03201b;
   --u3:#f07aaa; --u3d:#b84c7b; --u3i:#2a0716;
+  --u4:#f0aa52; --u4d:#c47820; --u4i:#241304;
+  --u5:#5dcc9e; --u5d:#32916d; --u5i:#061b12;
+  --u6:#ee83b0; --u6d:#ba4c7b; --u6i:#2c0718;
+  --u7:#8996ff; --u7d:#5b68c9; --u7i:#0c1028;
+  --u8:#b783f0; --u8d:#8656bb; --u8i:#1b0d2b;
+  --u9:#ff7777; --u9d:#c94c4c; --u9i:#2b0808;
+  --u10:#55c7d4; --u10d:#318f9b; --u10i:#061c20;
+  --u11:#e9bd4e; --u11d:#b38b27; --u11i:#241b04;
   --note:#f5cf48; --note-deep:#cfa521; --shadow:rgba(0,0,0,.45); color-scheme:dark}

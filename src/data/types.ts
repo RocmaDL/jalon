@@ -2,7 +2,7 @@
 
 /** Journée de cours (unité du parcours). */
 export interface Unit {
-  /** Numéro de journée (1 à 3). */
+  /** Numéro d'unité du parcours. */
   d: number;
   /** Intitulé. */
   n: string;

@@ -15,8 +15,8 @@ export function Onboarding() {
       <Mascot mood="proud" size={120} />
       <h1>Salut, moi c&apos;est Mémo.</h1>
       <p>
-        Je vais t&apos;aider à réviser le module Management de projets, un petit peu chaque jour. Trois journées de
-        cours, onze notions, soixante termes.
+        Je vais t&apos;aider à réviser JavaScript et React, un petit peu chaque jour. Sept journées thématiques et des
+        exercices variés.
       </p>
       <div className="card" style={{ width: "100%", textAlign: "left" }}>
         <label htmlFor="obname" style={{ font: "600 16px var(--f-d)" }}>

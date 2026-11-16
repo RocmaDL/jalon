@@ -15,7 +15,7 @@ const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", display: 
 
 export const metadata: Metadata = {
   title: "Jalon",
-  description: "Révisions du module Management de projets, un peu chaque jour.",
+  description: "Révisions JavaScript et React, un peu chaque jour.",
 };
 
 export const viewport: Viewport = {

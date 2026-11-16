@@ -32,6 +32,11 @@ export function unitNodes(d: number): PathNode[] {
   return N;
 }
 
+/** Une journée devient disponible après la validation de l'épreuve précédente. */
+export function unitUnlocked(d: number): boolean {
+  return d === UNITS[0]?.d || !!D.legend["e:" + (d - 1)];
+}
+
 const nodeDone = (n: PathNode): boolean => {
   switch (n.type) {
     case "topic":
@@ -48,6 +53,17 @@ const nodeDone = (n: PathNode): boolean => {
 /** Une étape est verrouillée tant que la précédente (hors coffre) n’est pas faite. */
 export function nodeState(N: PathNode[], i: number): NodeState {
   const n = N[i];
+  const unit = n.type === "topic" ? TOPIC[n.t].d : n.type === "review" || n.type === "exam" ? n.d : 0;
+  if (unit && !unitUnlocked(unit)) {
+    const prog = n.type === "topic" ? (D.lessons[n.t] || 0) / 2 : 0;
+    const st = n.type === "topic" && nodeDone(n) ? strengthOf(topicKeys(n.t)) : null;
+    return { locked: true, done: nodeDone(n), prog, cracked: st !== null && st < 0.5, strength: st };
+  }
+  // L'épreuve est aussi le point de passage : elle peut être tentée pour
+  // valider ou sauter la journée sans terminer toutes ses leçons.
+  if (n.type === "exam") {
+    return { locked: false, done: nodeDone(n), prog: 0, cracked: false, strength: null };
+  }
   let pi = i - 1;
   while (pi >= 0 && N[pi].type === "chest" && n.type !== "chest") pi--;
   const locked = pi >= 0 && !nodeDone(N[pi]) && !nodeDone(n);

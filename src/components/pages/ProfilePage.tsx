@@ -164,7 +164,7 @@ export function ProfilePage() {
         <div style={{ minWidth: 0, flex: 1 }}>
           <h1 style={{ fontSize: 28 }}>{D.name || "Sans pseudo"}</h1>
           <p className="muted" style={{ margin: 0 }}>
-            Module Management de projets · {plural(m, "terme")} maîtrisé{m > 1 ? "s" : ""} sur {LEX.length}
+            JavaScript et React · {plural(m, "terme")} maîtrisé{m > 1 ? "s" : ""} sur {LEX.length}
           </p>
         </div>
       </div>

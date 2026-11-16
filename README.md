@@ -1,6 +1,6 @@
 # Jalon
 
-Appli de révision du module « Management de projets » (M1) : trois journées de cours, onze notions, soixante termes. Un parcours par journée, des exercices variés (QCM, vrai/faux, phrases à trous, remise en ordre, saisie libre, paires), une mémoire espacée qui fait revenir ce qu'on oublie, et une couche de jeu (série, cœurs, quêtes, ligue simulée, succès).
+Appli de révision des cours de JavaScript et React : sept journées thématiques, avec une à deux notions par journée, et un parcours gamifié. Elle propose des exercices variés (QCM, vrai/faux, phrases à trous, remise en ordre, saisie libre, paires), une mémoire espacée qui fait revenir ce qu'on oublie, et une couche de jeu (série, cœurs, quêtes, ligue simulée, succès).
 
 À l'origine, tout tenait dans un seul fichier `Jalon.html`. Ce dépôt en est la conversion en Next.js + TypeScript, découpée par responsabilité. Le comportement et le rendu sont les mêmes ; la sauvegarde utilise la même clé `localStorage` (`jalon-v1`).
 
@@ -18,7 +18,8 @@ npm run lint
 ```
 src/
   app/          layout (polices, CSS), page, icône
-  data/         contenu pédagogique : journées, lexique, QCM, vrai/faux, phrases à trous, ordres
+  data/         contenu pédagogique : unités, lexique, QCM, vrai/faux, phrases à trous, ordres,
+                et texte complet extrait des supports PDF
   lib/          outils sans état de jeu : dates, texte, hasard, index du contenu,
                 génération et correction des exercices, sons et confettis
   game/         état de jeu et règles
@@ -42,4 +43,4 @@ L'état reste un objet mutable, comme dans la version d'origine : les actions le
 
 ## Contenu
 
-Les questions et définitions sont tirées des supports du cours. Pour en ajouter, il suffit d'éditer les fichiers de `src/data/` : les index, leçons et révisions se recalculent seuls.
+Les questions et définitions sont tirées des supports JavaScript et React du dossier de formation. Le texte complet des 23 PDF est disponible dans « Lexique » > « Cours complets » et dans `src/data/course-content.ts`. La banque contient aussi des questions contextualisées générées à partir des notions repérées dans ces supports, dans `src/data/course-qcm.ts`. Pour ajouter un support, il suffit d'ajouter son texte et ses questions à `src/data/` : les index, leçons et révisions se recalculent seuls.

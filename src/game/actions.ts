@@ -496,6 +496,12 @@ function finish(): void {
     const unit = ls.unit as number;
     base = 40;
     bonus = perfect ? 5 : 0;
+    unitTopics(unit).forEach((topic) => {
+      D.lessons[topic] = Math.max(D.lessons[topic] || 0, 2);
+    });
+    D.chests["c:" + unit] = true;
+    D.rev["r:" + unit] = true;
+    D[`unitDone${unit}`] = true;
     const first = !D.legend["e:" + unit];
     D.legend["e:" + unit] = true;
     if (first) {

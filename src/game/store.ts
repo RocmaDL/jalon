@@ -29,8 +29,8 @@ export const S: UiState = {
 export let LS: Session | null = null;
 export function setLS(s: Session | null): void {
   LS = s;
+  saveSession();
 }
-
 export let modal: ModalSpec | null = null;
 export function setModal(m: ModalSpec | null): void {
   modal = m;
@@ -79,6 +79,30 @@ function subscribe(l: () => void): () => void {
   };
 }
 
+const SESSION_STORE = "jalon-session-v1";
+
+function saveSession(): void {
+  try {
+    if (LS?.express) {
+      localStorage.removeItem(SESSION_STORE);
+      return;
+    }
+    if (LS) localStorage.setItem(SESSION_STORE, JSON.stringify(LS));
+    else localStorage.removeItem(SESSION_STORE);
+  } catch {
+    // La progression principale reste sauvegardée même si la session ne peut pas l'être.
+  }
+}
+
+function loadSession(): void {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SESSION_STORE) || "null") as Session | null;
+    if (saved && Array.isArray(saved.queue) && saved.queue.length && !saved.express) LS = saved;
+  } catch {
+    localStorage.removeItem(SESSION_STORE);
+  }
+}
+
 /** Redessine le composant à chaque `emit()`. */
 export function useStore(): number {
   return useSyncExternalStore(subscribe, getVersion, getVersion);
@@ -118,11 +142,13 @@ function housekeeping(): void {
 /** Équivalent de l’ancien render() : état dérivé, sauvegarde, rafraîchissement. */
 export function commit(): void {
   housekeeping();
+  saveSession();
   emit();
 }
 
 /** Chargement initial, appelé une seule fois côté navigateur. */
 export function boot(): void {
   loadD();
+  loadSession();
   housekeeping();
 }

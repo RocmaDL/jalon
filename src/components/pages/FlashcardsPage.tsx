@@ -8,7 +8,7 @@ import { TOPIC } from "@/lib/content";
 import { plural } from "@/lib/text";
 import { Mascot } from "../ui/Mascot";
 
-/** Filtre Tout / J1 / J2 / J3, partagé avec le lexique. */
+/** Filtre Tout / J1...Jn, partagé avec le lexique. */
 export function DaySeg({ value, onPick }: { value: string; onPick: (v: string) => void }) {
   return (
     <div className="seg">
